@@ -11,6 +11,11 @@ Check out the live application here:
 ### 👉 [https://eight-bit-o-matic.onrender.com/](https://eight-bit-o-matic.onrender.com/) 👈
 
 ---
+## 📸 Screenshot
+
+![Homepage Screenshot](./Demo-Images/homepage.png)
+
+---
 ## 🖼️ Project Showcase
 
 Here are some examples of images transformed by the 8-Bit-O-Matic!
