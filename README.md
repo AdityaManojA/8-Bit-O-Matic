@@ -1,4 +1,4 @@
-# 👾 8-Bit-O-Matic: The Pixel Art Creator 🎨
+#  8-Bit-O-Matic: The Pixel Art Creator 👾
 
 Turn any image into a retro, 8-bit style piece of art! This simple web application takes your uploaded images and transforms them into pixelated versions, offering both full-color and classic black & white styles. ✨
 
