@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>8-Bit Character-O-Matic</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  
+  <style>
+    
+    body {
+      
+      background-color: #3a3a3a;
+      background-image: url("https://www.transparenttextures.com/patterns/8-bit-grit.png");
+      font-family: 'Press Start 2P', cursive;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    
+    .container {
+      background-color: #222222;
+      border: 4px solid #ffffff;
+      box-shadow: 8px 8px 0px #000000;
+      padding: 30px;
+      margin: 0 auto;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; 
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #ffcc00; 
+      text-shadow: 4px 4px 0px #000000;
+    }
+
+    p {
+      font-size: 0.9em;
+      line-height: 1.5;
+    }
+
+
+    input[type="file"] {
+        display: none;
+    }
+    .file-upload-label {
+        background-color: #4CAF50; 
+        color: white;
+        padding: 12px 20px;
+        border: 4px solid #ffffff;
+        box-shadow: 4px 4px 0px #000000;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+    }
+    .file-upload-label:hover {
+        background-color: #45a049;
+        box-shadow: 2px 2px 0px #000000;
+        transform: translate(2px, 2px);
+    }
+    
+   
+    #submit-button {
+      background-color: #008CBA; 
+      color: white;
+      padding: 12px 20px;
+      border: 4px solid #ffffff;
+      box-shadow: 4px 4px 0px #000000;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+    }
+    #submit-button:hover {
+        background-color: #007B9A;
+        box-shadow: 2px 2px 0px #000000;
+        transform: translate(2px, 2px);
+    }
+    #submit-button:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+    }
+
+   
+    #result-image {
+      margin-top: 20px;
+      border: 4px dashed #888;
+      background-color: #111;
+      padding: 10px;
+      min-width: 200px;
+      min-height: 200px;
+      image-rendering: pixelated; 
+      width: 200px; 
+    }
+    
+    #file-name {
+        margin-top: 10px;
+        font-size: 0.8em;
+        color: #ccc;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>8-Bit-O-Matic</h1>
+    <p>Upload an image to forge your 8-bit character!</p>
+    
+    
+    <label for="image-upload" class="file-upload-label">Select File...</label>
+    <input type="file" id="image-upload" accept="image/*">
+    <span id="file-name">No file chosen</span>
+
+    <button id="submit-button" disabled>Pixelate!</button>
+
+    <h3>Your Character:</h3>
+    <img id="result-image" src="" alt="Your 8-bit character will appear here"/>
+  </div>
+
+  <script>
+    const imageUpload = document.getElementById('image-upload');
+    const submitButton = document.getElementById('submit-button');
+    const resultImage = document.getElementById('result-image');
+    const fileNameSpan = document.getElementById('file-name');
+
+    
+    imageUpload.addEventListener('change', () => {
+        if (imageUpload.files.length > 0) {
+            fileNameSpan.textContent = imageUpload.files[0].name;
+            submitButton.disabled = false; 
+        } else {
+            fileNameSpan.textContent = 'No file chosen';
+            submitButton.disabled = true; 
+        }
+    });
+
+    submitButton.addEventListener('click', async () => {
+      const file = imageUpload.files[0];
+      if (!file) {
+        
+        showGameAlert("Please select a file first!");
+        return;
+      }
+
+     
+      const functionUrl = '/pixelate'; 
+      
+      const formData = new FormData();
+      formData.append('image', file);
+
+      
+      resultImage.src = "https://i.gifer.com/ZZ5H.gif";
+
+      try {
+        const response = await fetch(functionUrl, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+
+        const imageBlob = await response.blob();
+        resultImage.src = URL.createObjectURL(imageBlob);
+
+      } catch (error) {
+        console.error('Error:', error);
+        showGameAlert(`An error occurred! ${error.message}`);
+        resultImage.src = ""; 
+      }
+    });
+
+    
+    function showGameAlert(message) {
+        
+        alert(`--- ALERT ---\n\n${message}`);
+    }
+  </script>
+
+</body>
+</html>
