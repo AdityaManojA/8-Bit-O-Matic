@@ -21,6 +21,23 @@ Check out the live application here:
 -   **🕹️ Retro UI:** A fun, 8-bit themed interface.
 
 ---
+## 🖼️ Project Showcase
+
+Here are some examples of images transformed by the 8-Bit-O-Matic!
+
+### Character Set 1
+
+| Original | Pixelated (Color) | Pixelated (B&W) |
+| :------: | :---------------: | :-------------: |
+| ![Original d1](./Demo-Images/d1.jpg) | ![Color d1](./Demo-Images/d1(2).png) | ![B&W d1](./Demo-Images/d1(1).png) |
+
+<br>
+
+### Character Set 2
+
+| Original | Pixelated (Color) | Pixelated (B&W) |
+| :------: | :---------------: | :-------------: |
+| ![Original d2](./Demo-Images/d2.jpg) | ![Color d2](./Demo-Images/d2(1).png) | ![B&W d2](./Demo-Images/d2(2).png) |
 
 ## 🛠️ Tech Stack
 
